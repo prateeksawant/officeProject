@@ -11,4 +11,4 @@ Scenario Outline: Successful login with credentials from excel
     
     Examples:
     |sheetName|RowNumber|
-    |contactus|2|
+    |contactus|1|

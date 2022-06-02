@@ -7,9 +7,12 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.manageWait;
+
 public class loginPage {
 
 	public WebDriver ldriver;
+	manageWait wait ;
 	
 	@FindBy(xpath="//input[@id='Email']")
 	@CacheLookup
@@ -30,25 +33,26 @@ public class loginPage {
 	public loginPage(WebDriver driver) {
 	this.ldriver = driver;
 	PageFactory.initElements(driver, this);
+	wait = new manageWait(ldriver);
 	}
 	
-	public void userName(String email) throws InterruptedException {
-		Thread.sleep(3000);
+	public void userName(String email) {
+		wait.waitForElement(emailTextbox,30);
 		emailTextbox.clear();
 		emailTextbox.sendKeys(email);
 	}
-	public void userPassword(String password) throws InterruptedException{
-		Thread.sleep(3000);
+	public void userPassword(String password) {
+		wait.waitForElement(passwordTextbox,30);
 		passwordTextbox.clear();
 		passwordTextbox.sendKeys(password);
 	}
 	
-	public void clickLoginButton() throws InterruptedException {
-		Thread.sleep(3000);
+	public void clickLoginButton()  {
+		wait.waitForElement(loginButton,30);
 		loginButton.click();
 	}
-	public void clickLogoutButton() throws InterruptedException {
-		Thread.sleep(10000);
+	public void clickLogoutButton() {
+		wait.waitForElement(logoutButton,30);
 		JavascriptExecutor js = ((JavascriptExecutor)ldriver);
 		js.executeScript("arguments[0].click();", logoutButton);
 	//	logoutButton.click();

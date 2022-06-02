@@ -8,8 +8,8 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions
 	(
-	//features = ".//Features/login.feature",
-	features = ".//Features/login.feature",
+	features = {".//Features/login.feature",
+	".//Features/loginUsingData.feature"},
 	glue="stepDefinitions",
 	dryRun=false,
 	monochrome=true,
