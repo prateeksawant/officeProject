@@ -1,5 +1,6 @@
 Feature: login Using Excel
 
+@smoke
 Scenario Outline: Successful login with credentials from excel 
     Given User Launch Chrome Browser
     When User Opens URL "https://admin-demo.nopcommerce.com/login"

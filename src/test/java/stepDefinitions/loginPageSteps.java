@@ -1,6 +1,10 @@
 package stepDefinitions;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Properties;
+
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,12 +18,22 @@ public class loginPageSteps {
 
 	public WebDriver driver;
 	public loginPage pg1;
+	public Properties configPro;
 	
 @Given("^User Launch Chrome Browser$")
-public void user_Launch_Chrome_Browser() {
-    
-	System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+".//Drivers/chromedriver.exe");
-	driver = new ChromeDriver();
+public void user_Launch_Chrome_Browser() throws IOException {
+	
+	configPro = new Properties();
+	FileInputStream configPropFile =  new FileInputStream("config.properties");
+	configPro.load(configPropFile);
+	
+	String br = configPro.getProperty("browser");
+	
+	if(br.equals("chrome")) {
+		System.setProperty("webdriver.chrome.driver",configPro.getProperty("chromepath"));
+		driver = new ChromeDriver();
+	}
+
 	driver.manage().window().maximize();
 	pg1 = new loginPage(driver);
 	}

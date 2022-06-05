@@ -1,6 +1,7 @@
 
 Feature: Login
   
+  @sanity
 Scenario: Successful login with Valid credentials
     Given User Launch Chrome Browser
     When User Opens URL "https://admin-demo.nopcommerce.com/login"
